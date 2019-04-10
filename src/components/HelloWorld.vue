@@ -4,13 +4,20 @@
     <p>
       For guide and recipes on how to configure / customize this project,<br>
       check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
+      <a
+        href="https://cli.vuejs.org"
+        target="_blank"
+        rel="noopener"
+      >vue-cli documentation</a>.
     </p>
     <h3>Hello</h3>
 
     <div v-clickoutside="handleClick">okokok</div>
 
-    <div id='container' v-scrollunique='true'>
+    <div
+      id='container'
+      v-scrollunique='true'
+    >
       <div class='text'></div>
       <div class='text'></div>
       <div class='text'></div>
@@ -21,11 +28,11 @@
     <p></p>
     <p></p>
     <p></p>
+    <p></p> 
     <p></p>
-    <p></p>
-  </div>
-</template>
-
+  </div> 
+</template>   
+      
 <script>
 import Clickoutside from '@/directives/clickOutSide'
 import Scrollunique from '@/directives/scrollUnique'
