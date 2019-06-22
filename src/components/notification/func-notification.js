@@ -27,7 +27,6 @@ export default {
   },
   methods: {
     createTimer() {
-      console.log(this.autoClose)
       if (this.autoClose) {
         this.timer = setTimeout(() => {
           this.visible = false

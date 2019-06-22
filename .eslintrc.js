@@ -27,10 +27,7 @@ module.exports = {
         }
       }
     ],
-    'key-spacing': [
-      2,
-      { beforeColon: false, afterColon: true, mode: 'strict' }
-    ],
+    'key-spacing': [2, { beforeColon: false, afterColon: true, mode: 'strict' }],
     'arrow-spacing': 2,
     'comma-spacing': 2,
     'comma-style': 2,
@@ -41,6 +38,7 @@ module.exports = {
     'no-debugger': 1,
     'no-unused-vars': 0,
     'no-mixed-spaces-and-tabs': 2,
+    'no-extra-boolean-cast': 0,
     quotes: [2, 'single', 'avoid-escape'],
     semi: 0,
     'semi-spacing': 2,
