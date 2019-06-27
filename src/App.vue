@@ -7,6 +7,20 @@
     <router-view/>
   </div>
 </template>
+
+
+<script>
+export default {
+  bus: {
+    a(...args) {
+      console.log(1)
+      console.log(args)
+    }
+  }
+}
+</script>
+
+
 <style lang="stylus">
 *
   margin 0

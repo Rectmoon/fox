@@ -1,11 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
-import store from './store'
-import iView from 'iview'
 import 'iview/dist/styles/iview.css'
+
+import iView from 'iview'
+import store from './store'
+import router from './router'
+import Bus from '@/mixins/bus'
 import Notification from '@/components/notification'
 
+Vue.use(Bus)
 Vue.use(iView)
 Vue.use(Notification)
 

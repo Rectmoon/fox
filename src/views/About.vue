@@ -4,7 +4,7 @@
     <!-- <Notification content="1" btn="2" @close="close"></Notification> -->
     <button @click="notify">click me1</button>
 
-    <DatePicker formatter="yyyy-mm-dd" v-model='t'></DatePicker>
+    <DatePicker formatter="yyyy-mm-dd" v-model="t"></DatePicker>
   </div>
 </template>
  
@@ -29,6 +29,7 @@ export default {
         btn: 'close',
         autoClose: false
       })
+      this.$bus('a', 222)
     }
   }
 }
