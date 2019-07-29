@@ -29,19 +29,21 @@ const formatRoutes = function(routes, routeData) {
   }
   routes.length &&
     routes.forEach(route => {
-      if (route.component) {
-        route.component = constRoutes[route.component]
-        routeData.children.push({
-          path: route.path,
-          name: route.index,
-          component: route.component,
-          meta: {
-            title: route.title
-          }
-        })
+      const { component, name, path, title, children } = route
+      if (component) {
+        const comp = constRoutes[component]
+        if (comp) {
+          route.component = comp
+          routeData.children.push({
+            name,
+            path,
+            component: comp,
+            meta: { title }
+          })
+        }
       }
-      if (route.children && route.children.length) {
-        formatRoutes(route.children, routeData)
+      if (children && children.length) {
+        formatRoutes(children, routeData)
       }
     })
   return routeData
@@ -77,7 +79,7 @@ router.beforeEach((to, from, next) => {
         next()
       })
       .catch(err => {
-        console.log(err)
+        console.error(err)
       })
   } else {
     next()

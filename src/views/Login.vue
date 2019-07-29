@@ -10,7 +10,7 @@ export default {
   methods: {
     handleLogin() {
       s.session.set('username', 'lzx')
-      this.$router.push('/403')
+      this.$router.push('/home')
     }
   }
 }
