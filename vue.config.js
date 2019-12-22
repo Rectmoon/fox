@@ -30,6 +30,7 @@ module.exports = {
   devServer: {
     before(app) {
       app.get('/userinfo', async (req, res) => {
+        await new Promise(resolve => setTimeout(resolve, 2000))
         res.json({
           errno: 0,
           errmsg: '获取权限成功',

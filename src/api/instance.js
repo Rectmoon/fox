@@ -1,6 +1,8 @@
 import axios from 'axios'
-
 import { Message } from 'element-ui'
+
+const CancelToken = axios.CancelToken
+const pendingMap = {}
 
 const baseURLMap = {
   development: '/',
@@ -18,6 +20,15 @@ const Instance = axios.create({
   }
 })
 
+export function removePending(config) {
+  Object.keys(pendingMap).forEach(key => {
+    if (key === `${config.url}~${config.method}`) {
+      pendingMap[key]()
+      delete pendingMap[key]
+    }
+  })
+}
+
 Instance.interceptors.request.use(
   config => {
     // if (config.method === 'post') {
@@ -25,25 +36,34 @@ Instance.interceptors.request.use(
     //     config.headers.Authorization = localStorage.token
     //   }
     // }
+    removePending(config)
+    config.cancelToken = new CancelToken(c => {
+      pendingMap[`${config.url}~${config.method}`] = c
+    })
     return config
   },
   error => {
-    Message({
-      showClose: true,
-      message: error,
-      type: 'error'
-    })
+    error.message &&
+      Message({
+        showClose: true,
+        message: error.message,
+        type: 'error'
+      })
   }
 )
 
 Instance.interceptors.response.use(
-  res => res.data,
+  res => {
+    removePending(res.config)
+    return res.data
+  },
   error => {
-    Message({
-      showClose: true,
-      message: error,
-      type: 'error'
-    })
+    error.message &&
+      Message({
+        showClose: true,
+        message: error.message,
+        type: 'error'
+      })
   }
 )
 
