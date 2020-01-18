@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
-import 'iview/dist/styles/iview.css'
+import 'element-ui/lib/theme-chalk/index.css'
 
-import iView from 'iview'
+import ElemtnUI from 'element-ui'
 import store from './store'
 import router from './router/index'
 import Bus from '@/mixins/bus'
@@ -13,7 +13,7 @@ import { getMenuData } from '@/api/auth'
 import s from '@/utils/storage'
 
 Vue.use(Bus)
-Vue.use(iView)
+Vue.use(ElemtnUI)
 Vue.use(Notification)
 
 Vue.config.productionTip = false
@@ -56,31 +56,27 @@ router.beforeEach((to, from, next) => {
   if (!username && to.path !== '/login') {
     next({ path: '/login' })
   } else if (isFetchRemote && to.path !== '/login') {
-    getMenuData()
-      .then(res => {
-        if (res.errno === 0) {
-          isFetchRemote = false
-          const menuData = res.result
-          s.storage.setItem('menudata', JSON.stringify(menuData))
-          const routeData = formatRoutes(menuData)
-          vm.$router.addRoutes(
-            [routeData].concat([
-              { name: '404', path: '/404', component: NotFound },
-              { path: '*', redirect: '/404' }
-            ])
-          )
-          vm.$router.push({
-            path: to.path,
-            query: to.query
-          })
-        } else {
-          isFetchRemote = true
-        }
-        next()
-      })
-      .catch(err => {
-        console.error(err)
-      })
+    getMenuData().then(res => {
+      if (res.errno === 0) {
+        isFetchRemote = false
+        const menuData = res.result
+        s.storage.setItem('menudata', JSON.stringify(menuData))
+        const routeData = formatRoutes(menuData)
+        vm.$router.addRoutes(
+          [routeData].concat([
+            { name: '404', path: '/404', component: NotFound },
+            { path: '*', redirect: '/404' }
+          ])
+        )
+        vm.$router.push({
+          path: to.path,
+          query: to.query
+        })
+      } else {
+        isFetchRemote = true
+      }
+      next()
+    })
   } else {
     next()
   }

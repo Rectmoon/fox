@@ -31,10 +31,10 @@ module.exports = {
     before(app) {
       app.get('/userinfo', async (req, res) => {
         await new Promise(resolve => setTimeout(resolve, 2000))
-        res.json({
-          errno: 0,
-          errmsg: '获取权限成功',
-          result: [
+        res.status(401).json({
+          code: 200,
+          message: '获取权限成功',
+          data: [
             {
               name: 'message',
               title: '国服上单',
