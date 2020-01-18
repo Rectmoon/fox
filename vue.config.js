@@ -4,8 +4,6 @@ const resolve = dir => {
   return path.join(__dirname, dir)
 }
 
-// const isProd = process.env.NODE_ENV === 'production'
-
 module.exports = {
   css: {
     loaderOptions: {
@@ -31,7 +29,7 @@ module.exports = {
     before(app) {
       app.get('/userinfo', async (req, res) => {
         await new Promise(resolve => setTimeout(resolve, 2000))
-        res.status(401).json({
+        res.json({
           code: 200,
           message: '获取权限成功',
           data: [
