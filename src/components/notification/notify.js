@@ -48,8 +48,8 @@ export default options => {
 
   instance.vm.$on('closed', () => {
     removeInstance(instance)
-    document.body.removeChild(instance.vm.$el)
     instance.vm.$destroy()
+    document.body.removeChild(instance.vm.$el)
   })
 
   instance.vm.$on('close', () => {
