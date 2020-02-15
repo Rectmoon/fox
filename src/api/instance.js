@@ -30,7 +30,7 @@ function handleError({ code, message = '未知错误' }) {
       errorTip(message)
       break
   }
-  return Promise.reject({ code, message })
+  return Promise.reject(new Error({ code, message }))
 }
 
 const instance = axios.create({
