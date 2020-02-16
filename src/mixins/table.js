@@ -1,25 +1,25 @@
 export default {
-  data() {
+  data () {
     return {
       ops: '',
       dialogShow: false
     }
   },
   methods: {
-    getLists() {},
-    addTask() {
+    getLists () {},
+    addTask () {
       this.ops = '1'
       this.dialogShow = true
     },
-    editTask(id) {
+    editTask (id) {
       this.ops = ['2', id].join(',')
       this.dialogShow = true
     },
-    handleClose() {
+    handleClose () {
       this.ops = ''
       this.dialogShow = false
     },
-    handleSubmit() {
+    handleSubmit () {
       this.dialogShow = false
       this.getLists()
     }

@@ -4,11 +4,11 @@ import { Notification, MessageBox } from 'element-ui'
 const CancelToken = axios.CancelToken
 const pendingMap = {}
 
-function errorTip(title) {
+function errorTip (title) {
   Notification.error({ title, duration: 2000 })
 }
 
-function handleError({ code, message = '未知错误' }) {
+function handleError ({ code, message = '未知错误' }) {
   switch (code) {
     case 401:
       MessageBox.confirm(
@@ -74,7 +74,7 @@ instance.interceptors.response.use(
   }
 )
 
-export function removePending(config) {
+export function removePending (config) {
   Object.keys(pendingMap).forEach(key => {
     if (key === `${config.url}~${config.method}`) {
       pendingMap[key]()
@@ -83,7 +83,7 @@ export function removePending(config) {
   })
 }
 
-export function createCrud(uri) {
+export function createCrud (uri) {
   return {
     create: data => instance.post(`${uri}`, data),
     remove: id => instance.delete(`${uri}/${id}`),

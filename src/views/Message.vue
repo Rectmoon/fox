@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       a: 1,
       b: 2

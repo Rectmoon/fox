@@ -14,7 +14,7 @@ export default {
       default: () => []
     }
   },
-  data() {
+  data () {
     return {
       operation: '', // '1': 添加,'2':修改, '3':复制
       id: '',
@@ -24,18 +24,18 @@ export default {
       loading: false
     }
   },
-  created() {
+  created () {
     this.form = this.getDefaultForm()
   },
   watch: {
-    ops(str) {
+    ops (str) {
       ;[this.operation, this.id] = str.split(',')
       if (this.id === undefined) this.id = ''
       this.main()
     }
   },
   methods: {
-    main() {
+    main () {
       switch (this.operation) {
         case '1':
           this.title = '添加任务'
@@ -53,22 +53,22 @@ export default {
           break
       }
     },
-    getDefaultForm() {},
-    add() {
+    getDefaultForm () {},
+    add () {
       this.form = this.getDefaultForm()
     },
-    edit() {
+    edit () {
       this.form = extend(true, {}, this.tableData[this.id])
     },
-    copy() {},
-    handleClose() {
+    copy () {},
+    handleClose () {
       this.operation = ''
       this.id = ''
       this.$emit('close')
       this.$refs.form.resetFields()
     },
-    next() {},
-    formSubmit() {
+    next () {},
+    formSubmit () {
       this.$refs.form.validate(valid => {
         if (valid) {
           this.$confirm('确定提交吗？', '提示', { type: 'warning' }).then(

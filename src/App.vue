@@ -8,18 +8,16 @@
   </div>
 </template>
 
-
 <script>
 export default {
   bus: {
-    a(...args) {
+    a (...args) {
       console.log(1)
       console.log(args)
     }
   }
 }
 </script>
-
 
 <style lang="stylus">
 *

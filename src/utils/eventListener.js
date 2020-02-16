@@ -6,7 +6,7 @@ var passiveSupported = false
 try {
   // 不支持 addEventListener 和 Object.defineProperty 的平台，一定不支持 passive 开关
   var options = Object.defineProperty({}, 'passive', {
-    get: function() {
+    get: function () {
       passiveSupported = true
       return undefined
     }
@@ -18,45 +18,44 @@ try {
 
 var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined'
 
-var _addEventListener = function() {}
-var _removeEventListener = function() {}
+var _addEventListener = function () {}
+var _removeEventListener = function () {}
 
 if (isBrowser) {
   _addEventListener = document.addEventListener // 现代浏览器
-    ? function(element, event, handler, options) {
-        var ref =
+    ? function (element, event, handler, options) {
+      var ref =
           typeof options === 'boolean' ? { capture: options } : options || {}
-        var capture = ref.capture
-        if (capture === void 0) capture = false
-        var passive = ref.passive
-        if (passive === void 0) passive = true
-        element.addEventListener(
-          event,
-          handler,
-          passiveSupported ? { capture: capture, passive: passive } : capture
-        )
-      }
-    : // IE 8-
-      function(element, event, handler) {
-        if (element && event && handler) {
-          //element.attachEvent('on' + event, handler);
-          element.attachEvent('on' + event, function() {
-            //使函数体内this指向element
-            return handler.call(element, window.event)
-          })
-        }
-      }
-
-  _removeEventListener = document.removeEventListener
-    ? function(element, event, handler) {
-        element.removeEventListener(event, handler)
-      }
-    : function(element, event, handler) {
-        element.detachEvent('on' + event, handler)
-        element.detachEvent('on' + event, function() {
+      var capture = ref.capture
+      if (capture === undefined) capture = false
+      var passive = ref.passive
+      if (passive === undefined) passive = true
+      element.addEventListener(
+        event,
+        handler,
+        passiveSupported ? { capture: capture, passive: passive } : capture
+      )
+    }
+    : function (element, event, handler) { // IE 8-
+      if (element && event && handler) {
+        // element.attachEvent('on' + event, handler);
+        element.attachEvent('on' + event, function () {
+          // 使函数体内this指向element
           return handler.call(element, window.event)
         })
       }
+    }
+
+  _removeEventListener = document.removeEventListener
+    ? function (element, event, handler) {
+      element.removeEventListener(event, handler)
+    }
+    : function (element, event, handler) {
+      element.detachEvent('on' + event, handler)
+      element.detachEvent('on' + event, function () {
+        return handler.call(element, window.event)
+      })
+    }
 }
 
 var add = _addEventListener

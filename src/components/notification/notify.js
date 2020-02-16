@@ -28,7 +28,7 @@ export default options => {
   const instance = new NotificationCon({
     propsData: { ...opts },
     data: {
-      autoClose: !!autoClose ? autoClose : false
+      autoClose: autoClose || false
     }
   })
 

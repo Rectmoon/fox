@@ -28,11 +28,11 @@
     <p></p>
     <p></p>
     <p></p>
-    <p></p> 
     <p></p>
-  </div> 
-</template>   
-      
+    <p></p>
+  </div>
+</template>
+
 <script>
 import Clickoutside from '@/directives/clickOutSide'
 import Scrollunique from '@/directives/scrollUnique'
@@ -46,7 +46,7 @@ export default {
     Scrollunique
   },
   methods: {
-    handleClick() {
+    handleClick () {
       console.log(123)
     }
   }

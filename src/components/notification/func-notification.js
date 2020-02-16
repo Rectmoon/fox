@@ -2,7 +2,7 @@ import Notification from './notification'
 
 export default {
   extends: Notification,
-  data() {
+  data () {
     return {
       verticalOffset: 0,
       visible: false,
@@ -11,7 +11,7 @@ export default {
     }
   },
   computed: {
-    style() {
+    style () {
       return {
         position: 'fixed',
         right: '20px',
@@ -19,24 +19,24 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     this.createTimer()
   },
-  beforeDestory() {
+  beforeDestory () {
     this.clearTimer()
   },
   methods: {
-    createTimer() {
+    createTimer () {
       if (this.autoClose) {
         this.timer = setTimeout(() => {
           this.visible = false
         }, this.autoClose)
       }
     },
-    clearTimer() {
+    clearTimer () {
       this.timer && clearTimeout(this.timer)
     },
-    afterEnter() {
+    afterEnter () {
       this.height = this.$el.offsetHeight
     }
   }

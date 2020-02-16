@@ -1,6 +1,6 @@
 const oproto = Object.prototype
 
-export function getType(o) {
+export function getType (o) {
   return oproto.toString
     .call(o)
     .slice(8, -1)
@@ -15,21 +15,21 @@ export const isArray = o => getType(o) === 'array'
 export const isString = o => getType(o) === 'string'
 export const isNumber = o => getType(o) === 'number'
 export const isObject = o => getType(o) === 'object'
-export function isPlaneObject(o) {
+export function isPlaneObject (o) {
   return getType(o) === 'object' && Object.getPrototypeOf(o) === oproto
 }
 
-export function extend() {
-  let options,
-    name,
-    src,
-    copy,
-    copyisArray,
-    clone,
-    target = arguments[0] || {},
-    i = 1,
-    length = arguments.length,
-    deep = false
+export function extend () {
+  let options
+  let name
+  let src
+  let copy
+  let copyisArray
+  let clone
+  let target = arguments[0] || {}
+  let i = 1
+  const length = arguments.length
+  let deep = false
 
   // 如果第一个参数为布尔,判定是否深拷贝
   if (typeof target === 'boolean') {

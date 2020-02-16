@@ -26,27 +26,27 @@ export default {
       required: true
     }
   },
-  data() {
+  data () {
     return {
       visible: true
     }
   },
   computed: {
-    style() {
+    style () {
       return {}
     }
   },
   methods: {
-    handleClose(e) {
+    handleClose (e) {
       e.preventDefault()
       this.$emit('close')
     },
-    afterLeave() {
+    afterLeave () {
       this.$emit('closed')
     },
-    afterEnter() {},
-    clearTimer() {},
-    createTimer() {}
+    afterEnter () {},
+    clearTimer () {},
+    createTimer () {}
   }
 }
 </script>

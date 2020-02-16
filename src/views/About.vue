@@ -15,13 +15,13 @@
     <DatePicker formatter="yyyy-mm-dd" v-model="t"></DatePicker>
   </div>
 </template>
- 
+
 <script>
 import DatePicker from '@/components/date-picker/date-picker'
 import { getMenuData } from '@/api/auth'
 import { removePending } from '@/api/instance'
 export default {
-  data() {
+  data () {
     return {
       t: new Date()
     }
@@ -30,10 +30,10 @@ export default {
     DatePicker
   },
   methods: {
-    close() {
+    close () {
       console.log(2)
     },
-    notify() {
+    notify () {
       this.$notify({
         content: 'test $notify',
         btn: 'close',
@@ -41,10 +41,10 @@ export default {
       })
       this.$bus('a', 222)
     },
-    getUserInfo() {
+    getUserInfo () {
       getMenuData()
     },
-    cancel() {
+    cancel () {
       removePending({
         url: '/userinfo',
         method: 'get'
@@ -54,6 +54,5 @@ export default {
 }
 </script>
 
-
 <style>
-</style> 
+</style>

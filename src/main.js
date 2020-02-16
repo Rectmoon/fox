@@ -18,12 +18,12 @@ Vue.use(Notification)
 
 Vue.config.productionTip = false
 
-const formatRoutes = function(routes, routeData) {
+const formatRoutes = function (routes, routeData) {
   if (!routeData) {
     routeData = {
       name: 'home',
       path: '/home',
-      component: constRoutes['home'],
+      component: constRoutes.home,
       children: []
     }
   }

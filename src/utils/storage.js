@@ -1,6 +1,6 @@
 import { extend } from './base'
 
-function deserialize(val) {
+function deserialize (val) {
   if (typeof val !== 'string') return undefined
   try {
     return JSON.parse(val)
@@ -16,37 +16,37 @@ const store = {
   }
 }
 const api = {
-  set(k, v) {
+  set (k, v) {
     if (this.disabled) return
     if (v === undefined) return this.remove(k)
     this.storage.setItem(k, JSON.stringify(v))
   },
-  get(k, def) {
+  get (k, def) {
     if (this.disabled) return def
-    let v = deserialize(this.storage.getItem(k))
+    const v = deserialize(this.storage.getItem(k))
     return v === undefined ? def : v
   },
-  has(k) {
+  has (k) {
     return this.get(k) !== undefined
   },
-  remove(k) {
+  remove (k) {
     if (this.disabled) return
     this.storage.removeItem(k)
   },
-  clear() {
+  clear () {
     if (this.disabled) return
     this.storage.clear()
   },
-  forEach(cb) {
+  forEach (cb) {
     if (this.disabled) return
     for (let i = 0; i < this.storage.length; i++) {
-      let k = this.storage.key(i)
+      const k = this.storage.key(i)
       cb(k, this.get(k))
     }
   },
-  getAll() {
+  getAll () {
     if (this.disabled) return null
-    let res = {}
+    const res = {}
     this.forEach((k, v) => {
       res[k] = v
     })

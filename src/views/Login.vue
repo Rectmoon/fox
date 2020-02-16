@@ -12,13 +12,13 @@
 <script>
 import s from '@/utils/storage'
 export default {
-  data() {
+  data () {
     return {
       platform: 1
     }
   },
   computed: {
-    animatedCls() {
+    animatedCls () {
       return {
         'enter-active-class': this.platform ? 'zoomInRight' : 'zoomInLeft',
         'leave-active-class': this.platform ? 'zoomOutLeft' : 'zoomOutRight'
@@ -26,11 +26,11 @@ export default {
     }
   },
   methods: {
-    handleLogin() {
+    handleLogin () {
       s.session.set('username', 'lzx')
       this.$router.push('/home')
     },
-    handleToggle() {
+    handleToggle () {
       this.platform = !this.platform - 0
     }
   }
