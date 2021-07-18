@@ -88,7 +88,7 @@ export function createCrud (uri) {
     create: data => instance.post(`${uri}`, data),
     remove: id => instance.delete(`${uri}/${id}`),
     update: data => instance.put(`${uri}/${data.id || data._id}`, data),
-    list: params => instance.get(`${uri}`, params),
+    list: params => instance.get(`${uri}`, { params }),
     find: id => instance.get(`${uri}/${id}`)
   }
 }
